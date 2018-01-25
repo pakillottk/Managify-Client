@@ -13,10 +13,10 @@ class Company extends Entity {
                 'updated_at': new Date()
             },
             {
-                create: '/companies',
-                read  : '/companies', 
-                update: '/companies',
-                delete: '/companies',
+                create: '/api/companies',
+                read  : '/api/companies', 
+                update: '/api/companies',
+                delete: '/api/companies',
             }
         );
     }
