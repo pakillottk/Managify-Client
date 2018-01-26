@@ -6,46 +6,30 @@ import { ConnectedRouter } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { store, history } from './redux/store'
 
-/* 
-  TO DELETE: dummy code  
-*/
+import ThemeStyles from './components/ui/ThemeStyles'
+import UIThemeProvider from './components/ui/UIThemeProvider'
 
-import ApiConnection from './ApiConnection'
-import AuthTokenRouter from './communication/routers/AuthTokenRouter'
-import { authPaths, apiConnection } from './env'
-
-console.log( ApiConnection )
-const authRouter = new AuthTokenRouter( ApiConnection, authPaths )
-console.log( authRouter );
-
-(async () => {
-  try {
-    await authRouter.attemptLogin( { username:'root', password:'root' } )
-    console.log( 'Login okey' )
-    
-    console.log( ApiConnection.headers.headers )
-    
-    await authRouter.logout()
-
-    console.log( ApiConnection.headers.headers )
-    console.log( 'Logout okey' )
-  } catch( exception ) {
-    console.log( 'Login failed' )
-    console.log( exception )
-  }
-})()
-
-/* ====== */
+import Layout from './components/ui/Layout'
+import Segment from './components/ui/segment/Segment'
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <div>
-            Redux working!
-          </div>
-        </ConnectedRouter>
+        <UIThemeProvider theme={ThemeStyles}>
+          <ConnectedRouter history={history}>
+            <div>
+              <Layout>
+                <Segment>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget quam tincidunt, 
+                  pretium metus convallis, fringilla nunc. Morbi non malesuada ante. Integer nulla odio, 
+                  interdum et risus maximus, porttitor malesuada augue. Proin ut ex risus. Morbi et urna 
+                  ut urna hendrerit malesuada. Praesent auctor risus vitae eros euismod lobortis. Nullam.
+                </Segment>
+              </Layout>
+            </div>
+          </ConnectedRouter>
+        </UIThemeProvider>
       </Provider>
     );
   }

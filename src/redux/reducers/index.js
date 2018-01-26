@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
 
-const reducers = {}
+const reducers = () => {}
 
 export default reducers

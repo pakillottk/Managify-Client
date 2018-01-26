@@ -25,20 +25,28 @@ class Connection {
         return this.protocol + this.host + this.port;
     }
 
+    getFullPath( path ) {
+        if( path[0] !== '/' ) {
+            path = '/' + path;
+        }
+
+        return this.basePath() + path;
+    }
+
     get( path, request ) {
-        return axios.get( this.basePath() + path + request.getQueryString(), { headers: this.headers.headers } );
+        return axios.get( this.getFullPath( path ) + request.getQueryString(), { headers: this.headers.headers } );
     }
 
     post( path, request ) {
-        return axios.post( this.basePath() + path, request.input, { headers: this.headers.headers } );
+        return axios.post( this.getFullPath( path ), request.input, { headers: this.headers.headers } );
     }
 
     put( path, request ) {
-        return axios.put( this.basePath() + path, request.input, { headers: this.headers.headers } );
+        return axios.put( this.getFullPath( path ), request.input, { headers: this.headers.headers } );
     }
 
     delete( path, request ) {
-        return axios.delete( this.basePath() + path, { headers: this.headers.headers } );
+        return axios.delete( this.getFullPath( path ), { headers: this.headers.headers } );
     }
 }
 

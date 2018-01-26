@@ -16,6 +16,11 @@ class Request {
     }
 
     getQueryString() {
+        const queryString = this.query.toString();
+        if( queryString === '' ) {
+            return '';
+        }
+        
         return '?' + this.query.toString();
     }
 }
