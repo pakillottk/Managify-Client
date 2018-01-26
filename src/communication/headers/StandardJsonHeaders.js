@@ -7,9 +7,9 @@ class StandardJsonHeaders extends Headers {
         };
         if( headers ) {
             super( {...defaultJsonConfig, headers } );    
-        }
-        
-        super( defaultJsonConfig );
+        } else {
+            super( defaultJsonConfig );
+        }        
     }
 }
 
