@@ -1,21 +1,30 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 
-import createHistory from 'history/createBrowserHistory'
 
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
 import reducers from './reducers'
 
+const createHistory = require('history').createBrowserHistory
 const history = createHistory()
 
-const middleware = routerMiddleware( history )
+const initialState = {};
+const reducer = combineReducers({
+  ...reducers,
+  router: routerReducer
+});
 
-const store = createStore(
-    combineReducers({
-      ...reducers,
-      router: routerReducer
-    }),
-    applyMiddleware( middleware ),
+const finalCreateStore = applyMiddleware(
+  routerMiddleware( history ), 
+  thunk,
+  promise 
+)( createStore )
+  
+const store = finalCreateStore(
+    reducer,
+    initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

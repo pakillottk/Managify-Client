@@ -34,7 +34,14 @@ class Connection {
     }
 
     get( path, request ) {
-        return axios.get( this.getFullPath( path ) + request.getQueryString(), { headers: this.headers.headers } );
+        if( request !== undefined && request !== null )
+        {
+            return axios.get( this.getFullPath( path ) + request.getQueryString(), { headers: this.headers.headers } );
+        }
+        else
+        {
+            return axios.get( this.getFullPath( path ), { headers: this.headers.headers } );
+        }
     }
 
     post( path, request ) {

@@ -6,3 +6,13 @@
 body {
   background: #ccc;
 }
+
+.scale-hover
+{
+  transition: all 400ms ease-in-out;
+}
+
+.scale-hover:hover
+{
+  transform: scale(1.20);
+}

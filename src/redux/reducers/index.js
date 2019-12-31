@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux'
 
-const reducers = () => {}
+import login from './login'
+
+const reducers = 
+{
+    login
+}
 
 export default reducers
